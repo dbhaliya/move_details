@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, unnecessary_null_comparison, avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -139,10 +139,13 @@ class _LoginPageState extends State<LoginPage> {
                           height: 6.h,
                           width: 80.w,
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                            Colors.blueAccent.shade700,
-                            Colors.blue.shade300,
-                          ])),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.blueAccent.shade700,
+                                Colors.blue.shade300,
+                              ],
+                            ),
+                          ),
                           alignment: Alignment.center,
                           child: Text(
                             "Sigh in",
@@ -199,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

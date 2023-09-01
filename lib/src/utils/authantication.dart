@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, invalid_return_type_for_catch_error, non_constant_identifier_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -26,11 +26,11 @@ class FirebaseAuthHelper {
   }
 
   Future<User?> sign_in(String email, String password) async {
-      UserCredential user= await firebase
+    UserCredential user = await firebase
         .signInWithEmailAndPassword(email: email, password: password)
-       .catchError((error) {
-     
+        .catchError((error) {
       print(error);
+      return null;
     });
     return user.user;
   }
@@ -45,7 +45,8 @@ class FirebaseAuthHelper {
   }
 
   //check logout
-  Future<void> logout() async {
+  Future<bool> logout() async {
     await FirebaseAuth.instance.signOut();
+    return false;
   }
 }

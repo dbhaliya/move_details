@@ -9,6 +9,7 @@ class Colorshelper {
   static const grey200 = Color(0xffBDBDBD);
   static const grey300 = Color(0xffCDCDCD);
   static const grey400 = Color(0xffBDBDBD);
+  static const grey500 =  Color(0xffBDBDBD);
   
   static const white = Color(0xffFFFFFF);
   static const black = Colors.black;

@@ -43,22 +43,40 @@ class _AddDataPageState extends State<AddDataPage> {
 
     uploadTask.snapshotEvents.listen((event) {});
 
-    await uploadTask.whenComplete(() async {
-      var uploadPath = await uploadTask.snapshot.ref.getDownloadURL();
+    await uploadTask.whenComplete(
+      () async {
+        var uploadPath = await uploadTask.snapshot.ref.getDownloadURL();
 
-      if (uploadPath.isNotEmpty) {
-        await firebaseFirestore.collection('Movies').doc().set({
-          'movie name': titletxt.text,
-          'image': uploadPath,
-          'director': directxt.text,
-          'details': disctxt.text,
-          'movie time': timeinput.text,
-          'movie data': datetxt.text,
-        }).then((value) => const Text("record insert"));
-      } else {
-        const Text("Something is wrong");
-      }
-    });
+        try {
+          if (uploadPath.isNotEmpty) {
+            await firebaseFirestore.collection('Movie').doc().set(
+              {
+                'movie name': titletxt.text,
+                'image': uploadPath,
+                'director': directxt.text,
+                'details': disctxt.text,
+                'movie time': timeinput.text,
+                'movie data': datetxt.text,
+              },
+            ).then(
+              (value) => const Text("record insert"),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Data is not inser'),
+              ),
+            );
+          }
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('error'),
+            ),
+          );
+        }
+      },
+    );
   }
 
   @override
